@@ -58,7 +58,7 @@ impl SerialConnection {
 
     fn usb_open(vendor: u16, product: u16) -> Result<Ftdi, FtStatus> {
         debug!("Opening USB device");
-        libftd2xx::set_vid_pid(0x0403u16,0x8c81u16)?;
+        libftd2xx::set_vid_pid(vendor, product)?;
         trace!("Successfully set FTDI VID/PID");
 
         let devices = match libftd2xx::list_devices() {
